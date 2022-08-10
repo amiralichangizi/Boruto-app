@@ -19,6 +19,7 @@ import com.google.accompanist.pager.*
 import com.tojare.borutoapp.R
 import com.tojare.borutoapp.domain.model.OnBoardingPage
 import com.tojare.borutoapp.ui.theme.*
+import com.tojare.borutoapp.util.Constant.LAST_ON_BOARDING_PAGE
 import com.tojare.borutoapp.util.Constant.ON_BOARDING_PAGE_COUNT
 
 @ExperimentalPagerApi
@@ -118,7 +119,7 @@ fun FinishButton(
     ) {
         AnimatedVisibility(
             modifier = Modifier.fillMaxWidth(),
-            visible = pagerState.currentPage == 2
+            visible = pagerState.currentPage == LAST_ON_BOARDING_PAGE
         ) {
             Button(
                 onClick = onClick,
