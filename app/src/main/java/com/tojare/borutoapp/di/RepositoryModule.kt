@@ -5,6 +5,7 @@ import com.tojare.borutoapp.data.repository.DataStoreOperationsImpl
 import com.tojare.borutoapp.data.repository.Repository
 import com.tojare.borutoapp.domain.repository.DataStoreOperations
 import com.tojare.borutoapp.domain.use_cases.UseCases
+import com.tojare.borutoapp.domain.use_cases.get_all_heroes.GetAllHeroesUseCases
 import com.tojare.borutoapp.domain.use_cases.read_onboarding.ReadOnBoardingUseCase
 import com.tojare.borutoapp.domain.use_cases.save_onboarding.SaveOnBoardingUseCase
 import dagger.Module
@@ -23,12 +24,14 @@ object RepositoryModule {
     fun provideDataStoreOperations(@ApplicationContext context: Context): DataStoreOperations {
         return DataStoreOperationsImpl(context)
     }
+
     @Provides
     @Singleton
     fun provideUseCases(repository: Repository): UseCases {
         return UseCases(
             saveOnBoardingUseCase = SaveOnBoardingUseCase(repository),
-            readOnBoardingUseCase = ReadOnBoardingUseCase(repository)
+            readOnBoardingUseCase = ReadOnBoardingUseCase(repository),
+            getAllHeroesUseCases = GetAllHeroesUseCases(repository)
         )
     }
 

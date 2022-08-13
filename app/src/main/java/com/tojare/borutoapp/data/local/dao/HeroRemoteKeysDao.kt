@@ -4,16 +4,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.tojare.borutoapp.domain.model.HeroRemoteKey
+import com.tojare.borutoapp.domain.model.HeroRemoteKeys
 
 @Dao
-interface HeroRemoteKeyDao {
+interface HeroRemoteKeysDao {
 
-    @Query("Select * From hero_remote_key_table Where id=:id")
-    suspend fun getRemoteKey(id: Int): HeroRemoteKey?
+    @Query("Select * From hero_remote_key_table Where id=:heroId")
+    suspend fun getRemoteKeys(heroId: Int): HeroRemoteKeys?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addAllRemoteKeys(heroRemoteKeys: List<HeroRemoteKey>)
+    suspend fun addAllRemoteKeys(heroRemoteKeys: List<HeroRemoteKeys>)
 
     @Query("Delete From hero_remote_key_table ")
     suspend fun deleteAllRemoteKeys():Int?
