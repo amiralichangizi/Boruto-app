@@ -2,6 +2,7 @@ package com.tojare.borutoapp.di
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.migration.Migration
 import com.tojare.borutoapp.data.local.BorutoDatabase
 import com.tojare.borutoapp.util.Constant.BORUTO_DATABASE
 import dagger.Module
@@ -24,6 +25,8 @@ object DatabaseModule {
             context,
             BorutoDatabase::class.java,
             BORUTO_DATABASE
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 }
