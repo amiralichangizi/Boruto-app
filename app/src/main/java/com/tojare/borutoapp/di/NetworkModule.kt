@@ -30,8 +30,8 @@ object NetworkModule {
     @Singleton
     fun provideOkHttp(): OkHttpClient {
         return OkHttpClient.Builder()
-            .readTimeout(15, TimeUnit.SECONDS)
-            .connectTimeout(15, TimeUnit.SECONDS)
+            .readTimeout(10, TimeUnit.SECONDS)
+            .connectTimeout(10, TimeUnit.SECONDS)
             .addInterceptor(HttpLoggingInterceptor().apply {
                 this.setLevel(HttpLoggingInterceptor.Level.BODY)
             })

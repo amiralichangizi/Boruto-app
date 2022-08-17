@@ -1,6 +1,5 @@
 package com.tojare.borutoapp.navigation
 
-import android.net.wifi.hotspot2.pps.HomeSp
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -10,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.tojare.borutoapp.presentation.screens.home.Home
+import com.tojare.borutoapp.presentation.screens.search.SearchScreen
 import com.tojare.borutoapp.presentation.screens.splash.SplashScreen
 import com.tojare.borutoapp.presentation.screens.welcome.WelcomeScreen
 import com.tojare.borutoapp.util.Constant.DETAILS_ARGUMENT_KEY
@@ -39,7 +39,7 @@ fun SetupNavGraph(navController: NavHostController) {
 
         }
         composable(route = Screen.Search.route) {
-
+            SearchScreen(navController)
         }
 
     }

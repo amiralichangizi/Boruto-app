@@ -18,6 +18,7 @@ object Constant {
     const val PREFERENCES_NAME = "boruto_preferences"
     const val PREFERENCES_KEY = "on_boarding_completed"
 
+
      val SAMPLE_HERO = Hero(
         id = 14,
         name = "Sarada",

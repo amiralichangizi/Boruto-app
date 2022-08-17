@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.tojare.borutoapp.navigation.Screen
 import com.tojare.borutoapp.presentation.common.ListContent
 import com.tojare.borutoapp.presentation.components.RatingWidget
 
@@ -21,7 +22,7 @@ fun Home(
     Scaffold(
         topBar = {
             HomeTopBar {
-
+                 navController.navigate(Screen.Search.route)
             }
         }
     ) {
