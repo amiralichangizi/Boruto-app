@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.migration.Migration
 import com.tojare.borutoapp.data.local.BorutoDatabase
+import com.tojare.borutoapp.data.repository.LocalDataSourceImpl
+import com.tojare.borutoapp.domain.repository.LocalDataSource
 import com.tojare.borutoapp.util.Constant.BORUTO_DATABASE
 import dagger.Module
 import dagger.Provides
@@ -28,5 +30,13 @@ object DatabaseModule {
         )
             .fallbackToDestructiveMigration()
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideLocalDataSource(
+        database: BorutoDatabase
+    ):LocalDataSource {
+        return LocalDataSourceImpl(database)
     }
 }

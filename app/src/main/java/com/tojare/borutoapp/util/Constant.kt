@@ -4,8 +4,8 @@ import com.tojare.borutoapp.domain.model.Hero
 
 object Constant {
 
-    //const val BASE_URL = "http://192.168.55.16:8080/"
-    const val BASE_URL = "http://10.0.2.2:8080/"
+    const val BASE_URL = "http://192.168.55.16:8080/"
+    //const val BASE_URL = "http://10.0.2.2:8080/"
 
     const val BORUTO_DATABASE = "boruto_database"
     const val DETAILS_ARGUMENT_KEY = "heroId"

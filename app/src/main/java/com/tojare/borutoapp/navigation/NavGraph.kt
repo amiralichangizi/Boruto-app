@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.tojare.borutoapp.presentation.screens.details.DetailsScreen
 import com.tojare.borutoapp.presentation.screens.home.Home
 import com.tojare.borutoapp.presentation.screens.search.SearchScreen
 import com.tojare.borutoapp.presentation.screens.splash.SplashScreen
@@ -36,7 +37,7 @@ fun SetupNavGraph(navController: NavHostController) {
                 type = NavType.IntType
             })
         ) {
-
+            DetailsScreen(navController)
         }
         composable(route = Screen.Search.route) {
             SearchScreen(navController)
