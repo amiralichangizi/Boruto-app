@@ -1,29 +1,33 @@
 package com.tojare.borutoapp.presentation.screens.details
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import coil.compose.rememberAsyncImagePainter
 import com.tojare.borutoapp.R
 import com.tojare.borutoapp.domain.model.Hero
 import com.tojare.borutoapp.presentation.components.InfoBox
 import com.tojare.borutoapp.presentation.components.OrderedList
-import com.tojare.borutoapp.ui.theme.LARGE_PADDING
-import com.tojare.borutoapp.ui.theme.MEDIUM_PADDING
-import com.tojare.borutoapp.ui.theme.MIN_SHEET_HEIGHT
-import com.tojare.borutoapp.ui.theme.titleColor
+import com.tojare.borutoapp.ui.theme.*
+import com.tojare.borutoapp.util.Constant.BASE_URL
 import com.tojare.borutoapp.util.Constant.SAMPLE_HERO
+import kotlinx.coroutines.delay
 
 
 @Composable
@@ -33,23 +37,22 @@ fun DetailsContent(
     hero: Hero?
 ) {
 
-    var state = BottomSheetValue.Collapsed
-
     val scaffoldState = rememberBottomSheetScaffoldState(
-        bottomSheetState = rememberBottomSheetState(initialValue = state)
+        bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Expanded)
     )
-    LaunchedEffect(key1 = "modal") {
-        state = BottomSheetValue.Expanded
-    }
 
     BottomSheetScaffold(
         scaffoldState = scaffoldState,
         sheetPeekHeight = MIN_SHEET_HEIGHT,
         sheetContent = {
-            hero?.let { BottomSheetContent(hero = it) }
+            hero?.let { BottomSheetContent(hero = it) } ?: Box(modifier = Modifier.fillMaxSize())
         },
         content = {
-            Text(text = "")
+            hero?.let { nonNullHero ->
+                BackgroundContent(heroImage = nonNullHero.image) {
+                    navController.navigateUp()
+                }
+            }?: Text(text = "")
         },
     )
 
@@ -165,6 +168,54 @@ fun BottomSheetContent(
         }
 
 
+    }
+}
+
+@Composable
+fun BackgroundContent(
+    heroImage: String,
+    imageFraction: Float = 1f,
+    backgroundColor: Color = MaterialTheme.colors.surface,
+    onCloseClicked: () -> Unit
+) {
+    val imageUrl = "$BASE_URL${heroImage}"
+
+    val painter = rememberAsyncImagePainter(
+        model = imageUrl,
+        error = painterResource(id = R.drawable.ic_placeholder)
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(backgroundColor)
+    ) {
+        Image(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(imageFraction)
+                .align(Alignment.TopStart),
+            painter = painter,
+            contentDescription = null,
+            contentScale = ContentScale.Crop
+        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.End
+        ) {
+
+            IconButton(
+                modifier = Modifier.padding(SMALL_PADDING),
+                onClick = { onCloseClicked() }
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Close,
+                    contentDescription = null
+                )
+            }
+
+        }
     }
 }
 
