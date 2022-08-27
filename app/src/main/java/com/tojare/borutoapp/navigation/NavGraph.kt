@@ -1,5 +1,8 @@
+@file:OptIn(ExperimentalMaterialApi::class)
+
 package com.tojare.borutoapp.navigation
 
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType

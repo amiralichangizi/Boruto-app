@@ -22,7 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.tojare.borutoapp.R
 import com.tojare.borutoapp.ui.theme.INFO_ICON_SIZE
 import com.tojare.borutoapp.ui.theme.SMALL_PADDING
-import com.tojare.borutoapp.ui.theme.welcomeScreenTitleColor
+import com.tojare.borutoapp.ui.theme.titleColor
 
 @Composable
 fun InfoBox(
@@ -71,7 +71,7 @@ fun InfoBoxPreview() {
         iconColor = MaterialTheme.colors.primary,
         bigText = "92",
         smallText = "Power",
-        textColor = MaterialTheme.colors.welcomeScreenTitleColor
+        textColor = MaterialTheme.colors.titleColor
     )
 }
 
@@ -83,6 +83,6 @@ fun InfoBoxDarkPreview() {
         iconColor = MaterialTheme.colors.primary,
         bigText = "92",
         smallText = "Power",
-        textColor = MaterialTheme.colors.welcomeScreenTitleColor
+        textColor = MaterialTheme.colors.titleColor
     )
 }

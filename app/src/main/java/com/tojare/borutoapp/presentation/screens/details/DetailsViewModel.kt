@@ -11,6 +11,7 @@ import com.tojare.borutoapp.domain.use_cases.UseCases
 import com.tojare.borutoapp.util.Constant.DETAILS_ARGUMENT_KEY
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,8 +21,8 @@ class DetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _selectedHero: MutableState<Hero?> = mutableStateOf(null)
-    val selectedHero: State<Hero?> = _selectedHero
+    private val _selectedHero: MutableStateFlow<Hero?> = MutableStateFlow(null)
+    val selectedHero: MutableStateFlow<Hero?> = _selectedHero
 
     init {
         viewModelScope.launch(Dispatchers.IO) {

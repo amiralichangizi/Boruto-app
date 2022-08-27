@@ -23,7 +23,7 @@ object Constant {
         id = 14,
         name = "Sarada",
         image = "/images/sarada.jpg",
-        about = "Sarada Uzumaki is a shinobi of Konohagakure's Uzamali ....",
+        about = "Sasuke Uchiha (うちはサスケ, Uchiha Sasuke) is one of the last surviving members of Konohagakure's Uchiha clan. After his older brother, Itachi, slaughtered their clan, Sasuke made it his mission in life to avenge them by killing Itachi. He is added to Team 7 upon becoming a ninja and, through competition with his rival and best friend, Naruto Uzumaki.",
         rating = 5.0,
         power = 98,
         month = "Oct",
