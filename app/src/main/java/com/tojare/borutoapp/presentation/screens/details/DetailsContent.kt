@@ -1,14 +1,16 @@
 package com.tojare.borutoapp.presentation.screens.details
 
+import android.graphics.Color.parseColor
 import android.util.Log
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -28,33 +30,62 @@ import com.tojare.borutoapp.presentation.components.OrderedList
 import com.tojare.borutoapp.ui.theme.*
 import com.tojare.borutoapp.util.Constant.BASE_URL
 import com.tojare.borutoapp.util.Constant.SAMPLE_HERO
-import kotlinx.coroutines.delay
+import kotlin.math.log
 
 
 @Composable
 @ExperimentalMaterialApi
 fun DetailsContent(
     navController: NavHostController,
-    hero: Hero?
+    hero: Hero?,
+    colors: Map<String, String>
 ) {
+
+    var vibrant by remember { mutableStateOf("#000000") }
+    var darkVibrant by remember { mutableStateOf("#000000") }
+    var onDarkVibrant by remember { mutableStateOf("#ffffff") }
+
+    LaunchedEffect(key1 = hero) {
+        vibrant = colors["vibrant"]!!
+        darkVibrant = colors["darkVibrant"]!!
+        onDarkVibrant = colors["onDarkVibrant"]!!
+    }
 
     val scaffoldState = rememberBottomSheetScaffoldState(
         bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Expanded)
     )
 
+
     val currentSheetFraction = scaffoldState.currentSheetFraction
+
+    val radiusAnim by animateDpAsState(
+        targetValue = (currentSheetFraction * 40).dp
+    )
+
 
     BottomSheetScaffold(
         scaffoldState = scaffoldState,
         sheetPeekHeight = MIN_SHEET_HEIGHT,
+        sheetShape = RoundedCornerShape(topStart = radiusAnim, topEnd = radiusAnim),
         sheetContent = {
-            hero?.let { BottomSheetContent(hero = it) } ?: Box(modifier = Modifier.fillMaxSize())
+            hero?.let {
+                Log.d("a2debug" ,"DetailsContent: $vibrant ----- $darkVibrant ")
+                BottomSheetContent(
+                    hero = it,
+                    infoBoxIconColor = Color(parseColor(vibrant)),
+                    sheetBackgroundColor = Color(parseColor(darkVibrant)),
+                    contentColor = Color(parseColor(onDarkVibrant)),
+                )
+            }
+                ?: Box(modifier = Modifier.fillMaxSize())
         },
         content = {
             hero?.let { nonNullHero ->
                 BackgroundContent(
                     heroImage = nonNullHero.image,
-                    imageFraction = currentSheetFraction
+                    imageFraction = currentSheetFraction,
+                    backgroundColor = Color(parseColor(darkVibrant)),
+                    iconColor = Color(parseColor(onDarkVibrant))
                 ) {
                     navController.navigateUp()
                 }
@@ -182,6 +213,7 @@ fun BackgroundContent(
     heroImage: String,
     imageFraction: Float = 1f,
     backgroundColor: Color = MaterialTheme.colors.surface,
+    iconColor:Color = MaterialTheme.colors.titleColor,
     onCloseClicked: () -> Unit
 ) {
     val imageUrl = "$BASE_URL${heroImage}"
@@ -217,6 +249,7 @@ fun BackgroundContent(
             ) {
                 Icon(
                     imageVector = Icons.Default.Close,
+                    tint =iconColor,
                     contentDescription = null
                 )
             }
