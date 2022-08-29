@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.tojare.borutoapp.R
 import com.tojare.borutoapp.domain.model.Hero
 import com.tojare.borutoapp.presentation.components.InfoBox
@@ -50,6 +51,11 @@ fun DetailsContent(
         darkVibrant = colors["darkVibrant"]!!
         onDarkVibrant = colors["onDarkVibrant"]!!
     }
+
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setStatusBarColor(
+        color = Color(parseColor(darkVibrant))
+    )
 
     val scaffoldState = rememberBottomSheetScaffoldState(
         bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Expanded)
