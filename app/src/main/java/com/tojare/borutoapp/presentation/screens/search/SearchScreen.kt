@@ -1,7 +1,6 @@
 package com.tojare.borutoapp.presentation.screens.search
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
@@ -11,7 +10,6 @@ import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.tojare.borutoapp.presentation.common.ListContent
-import com.tojare.borutoapp.presentation.screens.search.SearchTopBar
 import com.tojare.borutoapp.ui.theme.statusBarColor
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")

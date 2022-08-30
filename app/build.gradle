@@ -68,7 +68,7 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
-//    testImplementation 'org.jetbrains.kotlinx:kotlinx-test-junit:1.7.0'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
 
     /**
      * https://developer.android.com/jetpack/compose/navigation
