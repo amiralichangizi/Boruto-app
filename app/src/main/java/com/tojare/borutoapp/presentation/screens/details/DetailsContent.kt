@@ -75,7 +75,7 @@ fun DetailsContent(
         sheetShape = RoundedCornerShape(topStart = radiusAnim, topEnd = radiusAnim),
         sheetContent = {
             hero?.let {
-                Log.d("a2debug" ,"DetailsContent: $vibrant ----- $darkVibrant ")
+                Log.d("a2debug", "DetailsContent: $vibrant ----- $darkVibrant ")
                 BottomSheetContent(
                     hero = it,
                     infoBoxIconColor = Color(parseColor(vibrant)),
@@ -144,7 +144,7 @@ fun BottomSheetContent(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = MEDIUM_PADDING),
+                .padding(bottom = MEDIUM_PADDING + 4.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             InfoBox(
@@ -219,7 +219,7 @@ fun BackgroundContent(
     heroImage: String,
     imageFraction: Float = 1f,
     backgroundColor: Color = MaterialTheme.colors.surface,
-    iconColor:Color = MaterialTheme.colors.titleColor,
+    iconColor: Color = MaterialTheme.colors.titleColor,
     onCloseClicked: () -> Unit
 ) {
     val imageUrl = "$BASE_URL${heroImage}"
@@ -255,7 +255,7 @@ fun BackgroundContent(
             ) {
                 Icon(
                     imageVector = Icons.Default.Close,
-                    tint =iconColor,
+                    tint = iconColor,
                     contentDescription = null
                 )
             }
